@@ -8,6 +8,7 @@
     <title>Consumindo a API</title>
     <link rel="stylesheet" href="css/app-modern.min.css">
     <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+    <script src="js/script.js"></script>
 </head>
 
 <body onload="returnAll()">
@@ -19,10 +20,26 @@
             </h1>
         </div>
         <div class="mb-3">
-            <a href="#" class="btn btn-md btn-success">
-                <i class="fa fa-plus"></i>
-                Adicionar Produtos
-            </a>
+            <div class="row">
+                <div class="col-sm-4">
+                    <a href="#" class="btn btn-md btn-success" class="btn btn-info" data-toggle="modal"
+                        data-target="#staticBackdrop">
+                        <i class="fa fa-plus"></i>
+                        Adicionar Produtos
+                    </a>
+                </div>
+
+                <div class="col-sm-8">
+                    <div class="input-group input-group-merge">
+                        <input type="search" id="search" class="form-control" placeholder="Pesquisar produtos">
+                        <div class="input-group-append">
+                            <button class="input-group-text">
+                                <span class="fa fa-search"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <table class="table table-sm table-centered mb-0">
             <thead>
@@ -33,7 +50,7 @@
                     <th>Ações</th>
                 </tr>
             </thead>
-            <tbody  id="data_rows">
+            <tbody id="data_rows">
                 <th colspan="4" class="text-center">
                     Carregando ...
                 </th>
@@ -41,9 +58,54 @@
         </table>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Adicionar Produto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div> <!-- end modal header -->
+                <div class="modal-body">
+                    <div class="" id="message">
+
+                    </div>
+                    <form id="add-product">
+                        <div class="form-group">
+                            <label for="name_product">Nome do Produto</label>
+                            <input id="name_product" class="form-control" type="text" name="nome_produto"
+                                placeholder="Nome do produto">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="preco">Preço Unitario</label>
+                            <input id="preco" class="form-control" type="number" name="preco" placeholder="PReço">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="info">Informações do Produto</label>
+                            <textarea name="info" id="info" cols="10" rows="6" placeholder="Descrição"
+                                class="form-control"></textarea>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="insert-product">Adicionar Produto</button>
+                </div> <!-- end modal footer -->
+                </form>
+            </div> <!-- end modal content-->
+        </div> <!-- end modal dialog-->
+    </div> <!-- end modal-->
+
+
     <script src="js/bootstrap.js"></script>
-    <script src="js/script.js"></script>
     <script src="js/functions.js"></script>
+    <script>
+        addProduct()
+    </script>
 
 </body>
 

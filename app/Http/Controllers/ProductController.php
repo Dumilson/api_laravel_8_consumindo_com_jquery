@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
@@ -12,7 +13,7 @@ class ProductController extends Controller
     public function index()
     {
         try {
-            $data = Product::all();
+            $data = DB::table('products')->orderBy('created_at','desc')->get();
 
             return response(
                 [
