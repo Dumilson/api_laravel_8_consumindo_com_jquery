@@ -28,7 +28,13 @@ function editar(id) {
         url: "http://127.0.0.1:8000/api/products/get-data/"+id,
         dataType: "json",
         success: function (response) {
-            console.log(response)
+            if(response.status == 200){
+                console.log(response)
+                $("#name_product_edit").val(response.data.nome_do_produto)
+                $("#preco_edit").val(response.data.preco)
+                $("#info_edit").html(response.data.info)
+            }
+            
         }
     });
 }

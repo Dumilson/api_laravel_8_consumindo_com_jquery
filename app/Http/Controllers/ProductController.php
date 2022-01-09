@@ -87,9 +87,6 @@ class ProductController extends Controller
     public function edit($id)
     {
         try {
-            Validator::make($id, [
-                'id' => "required|regex:/^\d+(\.\d{1,2})?$/",
-            ]);
             
             $query =  DB::table('products')->where('id',$id)->first();
            
@@ -116,7 +113,7 @@ class ProductController extends Controller
             return response(
                 [
                     'sucess' => false,
-                    'message' => "Erro na api, contate o prevedor",
+                    'message' => "Erro na api, contate o prevedor".$th->getMessage(),
                     'status' => 400
 
                 ],
