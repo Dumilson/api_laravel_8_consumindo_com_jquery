@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumindo a API</title>
+    <link rel="stylesheet" href="css/app-modern.min.css">
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+</head>
+
+<body onload="returnAll()">
+
+    <div class="container">
+        <div class="mb-5">
+            <h1 class="display-5 text-center">
+                Consumindo API de Produtos
+            </h1>
+        </div>
+        <div class="mb-3">
+            <a href="#" class="btn btn-md btn-success">
+                <i class="fa fa-plus"></i>
+                Adicionar Produtos
+            </a>
+        </div>
+        <table class="table table-sm table-centered mb-0">
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Preço</th>
+                    <th>Info</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody  id="data_rows">
+                <th colspan="4" class="text-center">
+                    Carregando ...
+                </th>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="js/bootstrap.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/functions.js"></script>
+
+</body>
+
+</html>

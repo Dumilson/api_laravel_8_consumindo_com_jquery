@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -10,13 +11,25 @@ class ProductController extends Controller
 
     public function index()
     {
-        //
-    }
-
-
-    public function create()
-    {
-        //
+        try {
+            $data = Product::all();
+        
+            return response(
+                [
+                    'status' => 200,
+                    'sucess' => true,
+                    'data' => $data
+                ]
+            )->header('content-type', 'application/json');
+        } catch (\Throwable $th) {
+            return response(
+                 [
+                    'sucess' => false,
+                    'message' => "Erro na api, contate o prevedor",
+                    'status' => 400 
+                ],
+            )->header('content-type', 'application/json');
+        }
     }
 
   
@@ -25,13 +38,13 @@ class ProductController extends Controller
     
             try {
                 $validator = Validator::make($request->all(), [
-                   
+                    'nome_produto'=> 'required',
+                    'info'=>'required',
                     'preco' => "regex:/^\d+(\.\d{1,2})?$/",
                 ]);
         
                 if (!$validator->fails()) {
-              
-                    
+
                     return response(
                        [
                             'sucess' => false,
