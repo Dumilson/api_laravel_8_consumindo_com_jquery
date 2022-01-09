@@ -86,7 +86,42 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        //
+        try {
+            Validator::make($id, [
+                'id' => "required|regex:/^\d+(\.\d{1,2})?$/",
+            ]);
+            
+            $query =  DB::table('products')->where('id',$id)->first();
+           
+            if(!$query){
+                return response(
+                    [
+                        'status' => 404,
+                        'sucess' => false,
+                        'message' => "Dados invalidos",
+                    ]
+                )->header('content-type', 'application/json');
+            }
+
+    
+            return response(
+                [
+                    'status' => 200,
+                    'sucess' => true,
+                    'data' =>$query
+                ]
+            )->header('content-type', 'application/json');
+           
+        } catch (\Throwable $th) {
+            return response(
+                [
+                    'sucess' => false,
+                    'message' => "Erro na api, contate o prevedor",
+                    'status' => 400
+
+                ],
+            )->header('content-type', 'application/json');
+        }
     }
 
 
@@ -95,9 +130,45 @@ class ProductController extends Controller
         //
     }
 
-
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        
+        try {
+            Validator::make($request->all(), [
+                'id' => "required|regex:/^\d+(\.\d{1,2})?$/",
+            ]);
+            
+            $query =  DB::table('products')->where('id',$request->id)->delete();
+           
+            if(!$query){
+                return response(
+                    [
+                        'status' => 404,
+                        'sucess' => false,
+                        'message' => "Dados invalidos",
+                    ]
+                )->header('content-type', 'application/json');
+            }
+
+        
+
+            return response(
+                [
+                    'status' => 200,
+                    'sucess' => true,
+                ]
+            )->header('content-type', 'application/json');
+           
+        } catch (\Throwable $th) {
+            return response(
+                [
+                    'sucess' => false,
+                    'message' => "Erro na api, contate o prevedor",
+                    'status' => 400
+
+                ],
+            )->header('content-type', 'application/json');
+        }
     }
+
 }

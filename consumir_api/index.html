@@ -11,13 +11,15 @@
     <script src="js/script.js"></script>
 </head>
 
-<body onload="returnAll()">
+<body>
 
     <div class="container">
         <div class="mb-5">
             <h1 class="display-5 text-center">
                 Consumindo API de Produtos
             </h1>
+
+            <div id="message_old"></div>
         </div>
         <div class="mb-3">
             <div class="row">
@@ -98,13 +100,82 @@
                 </form>
             </div> <!-- end modal content-->
         </div> <!-- end modal dialog-->
-    </div> <!-- end modal-->
+    </div>
+    
+
+
+    <div class="modal fade" id="edit" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="edit" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="edit">Editar Produto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div> <!-- end modal header -->
+                <div class="modal-body">
+                    <div class="" id="message">
+
+                    </div>
+                    <form id="add-product">
+                        <div class="form-group">
+                            <label for="name_product">Nome do Produto</label>
+                            <input id="name_product" class="form-control" type="text" name="nome_produto"
+                                placeholder="Nome do produto">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="preco">Preço Unitario</label>
+                            <input id="preco" class="form-control" type="number" name="preco" placeholder="Preço">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="info">Informações do Produto</label>
+                            <textarea name="info" id="info" cols="10" rows="6" placeholder="Descrição"
+                                class="form-control"></textarea>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="editar-product">Editar Produto</button>
+                </div> <!-- end modal footer -->
+                </form>
+            </div> <!-- end modal content-->
+        </div> <!-- end modal dialog-->
+    </div>
+    
+
+    <div id="delete" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Deletar produto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center mt-4">Deseja deletar este produto ?</p>
+                </div>
+                <div class="modal-footer">
+                    <form action="" method="post" id="delete_product">
+                        <input type="hidden" name="id" id="id_product">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+                        <button type="submit" class="btn btn-danger" id="delete-product">Sim</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div><!-- end modal-->
 
 
     <script src="js/bootstrap.js"></script>
     <script src="js/functions.js"></script>
     <script>
+        returnAll()
         addProduct()
+        deleteProduct()
     </script>
 
 </body>

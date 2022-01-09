@@ -23,5 +23,7 @@ Route::group([
     'prefix'=>'products'
 ], function(){
     Route::get('/',[ProductController::class, 'index'])->name('products');
+    Route::get('/get-data/{id}',[ProductController::class, 'edit'])->name('products.edit');
     Route::post('/',[ProductController::class, 'store'])->name('products.store');
+    Route::delete('/',[ProductController::class, 'destroy'])->name('products.destroy');
 });
