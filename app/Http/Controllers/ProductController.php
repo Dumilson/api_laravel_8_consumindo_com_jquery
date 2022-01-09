@@ -13,7 +13,7 @@ class ProductController extends Controller
     {
         try {
             $data = Product::all();
-        
+
             return response(
                 [
                     'status' => 200,
@@ -23,57 +23,60 @@ class ProductController extends Controller
             )->header('content-type', 'application/json');
         } catch (\Throwable $th) {
             return response(
-                 [
+                [
                     'sucess' => false,
                     'message' => "Erro na api, contate o prevedor",
-                    'status' => 400 
+                    'status' => 400
                 ],
             )->header('content-type', 'application/json');
         }
     }
 
-  
+
     public function store(Request $request)
     {
-    
-            try {
-                $validator = Validator::make($request->all(), [
-                    'nome_produto'=> 'required',
-                    'info'=>'required',
-                    'preco' => "regex:/^\d+(\.\d{1,2})?$/",
-                ]);
-        
-                if (!$validator->fails()) {
 
-                    return response(
-                       [
-                            'sucess' => false,
-                            'message' => "Producto adicionado com sucesso !",
-                            'status' => 400
-                        ],
-                    )->header('content-type', 'application/json');
-                }
-        
+        try {
+            $validator = Validator::make($request->all(), [
+                'nome_produto' => 'required',
+                'info' => 'required',
+                'preco' => "regex:/^\d+(\.\d{1,2})?$/",
+            ]);
+
+            if (!$validator->fails()) {
+                $query = Product::insert([
+                    'nome_do_produto' => $request->nome_produto,
+                    'info' => $request->info,
+                    'preco' => $request->preco,
+                ]);
                 return response(
-                     [
-                        'sucess' => false,
-                        'message' => "Dados invalidos",
-                        'status' => 400
+                    [
+                        'sucess' => $query ? true : false,
+                        'message' => "Producto adicionado com sucesso !",
+                        'status' => 200
                     ],
                 )->header('content-type', 'application/json');
-            } catch (\Throwable $th) {
-                return response(
-                     [
-                        'sucess' => false,
-                        'message' => "Erro na api, contate o prevedor",
-                        'status' => 400 
-                    ]
-                )->header('content-type', 'application/json');
             }
-        
+
+            return response(
+                [
+                    'sucess' => false,
+                    'message' => "Dados invalidos",
+                    'status' => 400
+                ],
+            )->header('content-type', 'application/json');
+        } catch (\Throwable $th) {
+            return response(
+                [
+                    'sucess' => false,
+                    'message' => "Erro na api, contate o prevedor",
+                    'status' => 400
+                ]
+            )->header('content-type', 'application/json');
+        }
     }
 
- 
+
     public function show($id)
     {
         //
@@ -91,7 +94,7 @@ class ProductController extends Controller
         //
     }
 
- 
+
     public function destroy($id)
     {
         //
