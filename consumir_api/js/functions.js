@@ -64,9 +64,7 @@ function updateProduct() {
                     $("form .form-control").val("")
                     $("#edit").modal('hide')
                     setInterval(returnAll, 1000)
-
                 }
-
                 $("#update-product").attr('disabled', false)
                 $("#update-product").html('Atualizar produtos')
             })
