@@ -78,12 +78,6 @@ class ProductController extends Controller
     }
 
 
-    public function show($id)
-    {
-        //
-    }
-
-
     public function edit($id)
     {
         try {
@@ -122,9 +116,51 @@ class ProductController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        try {
+            $validator = Validator::make($request->all(), [
+                'id' => "required",
+                'nome_produto' => 'required',
+                'info' => 'required',
+                'preco' => "regex:/^\d+(\.\d{1,2})?$/",
+            ]);
+
+            if (!$validator->fails()) {
+                $query = DB::table('products')->where('id',$request->id)->update([
+                    'nome_do_produto' => $request->nome_produto,
+                    'info' => $request->info,
+                    'preco' => $request->preco,
+                ]);
+
+                if($query){
+                    return response(
+                        [
+                            'sucess' => $query ? true : false,
+                            'message' => "Producto atualizado com sucesso !",
+                            'status' => 200
+                        ],
+                    )->header('content-type', 'application/json');
+                }
+            }
+
+            return response(
+                [
+                    'sucess' => false,
+                    'message' => "Dados invalidos",
+                    'status' => 400
+                    , 'data' => $query
+                ],
+            )->header('content-type', 'application/json');
+        } catch (\Throwable $th) {
+            return response(
+                [
+                    'sucess' => false,
+                    'message' => "Erro na api, contate o prevedor",
+                    'status' => 400
+                ]
+            )->header('content-type', 'application/json');
+        }
     }
 
     public function destroy(Request $request)

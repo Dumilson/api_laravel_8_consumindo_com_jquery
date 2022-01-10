@@ -115,10 +115,11 @@
                     </button>
                 </div> <!-- end modal header -->
                 <div class="modal-body">
-                    <div class="" id="message">
+                    <div class="" id="message_update">
 
                     </div>
-                    <form id="add-product">
+                    <form id="update_product">
+                        <input type="hidden" name="id" id="id_edit">
                         <div class="form-group">
                             <label for="name_product_edit">Nome do Produto</label>
                             <input id="name_product_edit" class="form-control" type="text" name="nome_produto"
@@ -138,7 +139,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary" id="editar-product">Editar Produto</button>
+                    <button type="submit" class="btn btn-primary" id="update-product">Editar Produto</button>
                 </div> <!-- end modal footer -->
                 </form>
             </div> <!-- end modal content-->
@@ -175,6 +176,7 @@
     <script>
         returnAll()
         addProduct()
+        updateProduct()
         deleteProduct()
     </script>
 

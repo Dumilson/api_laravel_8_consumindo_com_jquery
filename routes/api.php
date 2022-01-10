@@ -25,5 +25,6 @@ Route::group([
     Route::get('/',[ProductController::class, 'index'])->name('products');
     Route::get('/get-data/{id}',[ProductController::class, 'edit'])->name('products.edit');
     Route::post('/',[ProductController::class, 'store'])->name('products.store');
+    Route::put('/',[ProductController::class, 'update'])->name('products.update');
     Route::delete('/',[ProductController::class, 'destroy'])->name('products.destroy');
 });
