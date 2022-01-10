@@ -10,8 +10,8 @@ function returnAll() {
             status.data.forEach(data => {
                 change = '<tr> <td>' + data.nome_do_produto + '</td> <td>' + data.preco + '</td> <td>' + data.info + '</td><td class="table-action"><a href="javascript: void(0);" onclick="deletar(' + data.id + ')" class="action-icon" data-toggle="modal" data-target="#delete"> <i class="fa fa-trash"></i></a><a href="javascript: void(0);" class="action-icon" onclick="editar(' + data.id + ')" data-toggle="modal" data-target="#edit"> <i class="fa fa-edit"></i></a></td></tr>'
                 html += change
-                $("#data_rows").html(html != "" ? html : "<th colspan='4'>Sem registros</th>")
             })
+            $("#data_rows").html(html != "" ? html : "<th colspan='4' class='text-center'>Sem registros</th>")
         })
 
         .fail(function (error) {
