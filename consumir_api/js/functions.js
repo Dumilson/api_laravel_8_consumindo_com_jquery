@@ -27,11 +27,11 @@ function editar(id) {
         dataType: "json",
         success: function (response) {
             if (response.status == 200) {
-                console.log(response)
                 $("#name_product_edit").val(response.data.nome_do_produto)
                 $("#id_edit").val(response.data.id)
                 $("#preco_edit").val(response.data.preco)
                 $("#info_edit").html(response.data.info)
+                $("#info_edit").val(response.data.info)
             }
 
         }
@@ -52,7 +52,6 @@ function updateProduct() {
             }
           })
             .done(function (status) {
-                console.log(status)
                 if (status.sucess == false) {
                     $("#message_update").attr('class', 'alert alert-danger')
                     $("#message_update").html(status.message)
@@ -114,15 +113,15 @@ function addProduct() {
             }
           })
             .done(function (status) {
-                console.log(status)
                 if (status.sucess == false) {
                     $("#message").attr('class', 'alert alert-danger')
                     $("#message").html(status.message)
 
                 }
                 if (status.sucess == true && status.status == 200) {
-                    $("#message").attr('class', 'alert alert-success')
-                    $("#message").html(status.message)
+                    $("#message_old").attr('class', 'alert alert-success')
+                    $("#message_old").html(status.message)
+                    $("#add-product-send").modal('hide')
                     $("form .form-control").val("")
                     setInterval(returnAll, 1000)
 
